@@ -23,13 +23,36 @@
  * 
 */
 
+const navbarListElement = document.querySelector("#navbar__list")
+const sectionList = document.getElementsByTagName("section")
 
+// console.log(navbarListElement)
+// console.log(sectionList)
 /**
  * End Global Variables
  * Start Helper Functions
  * 
 */
 
+function clickHelper(e){
+    e.preventDefault()
+
+    console.log(e.target.hash)
+
+    const target = document.querySelector(`${e.target.hash}`)
+
+    if(target){
+        target.scrollIntoView({behavior: "smooth"})
+    }
+}
+
+function setActive(element){
+    element.classList.add("active")
+}
+
+function unsetActive(element){
+    element.classList.remove("active")
+}
 
 
 /**
@@ -39,14 +62,50 @@
 */
 
 // build the nav
+function buildNav(element){
+    const liList = new DocumentFragment()
+
+    for (const section of sectionList) {
+        const li = document.createElement("li")
+        const a = document.createElement("a")
+        a.href = `#${section.id}`
+        a.innerHTML = `${section.dataset.nav}`
+
+        a.addEventListener("click", clickHelper)
+
+        li.appendChild(a)
+        
+        liList.append(li)
+
+    }
+   
+    element.append(liList)
+}
 
 
 // Add class 'active' to section when near top of viewport
+function activeSection(){
+    for (const section of sectionList) {
+        const box = section.getBoundingClientRect();
+        const anchor = document.querySelector(`#${section.id}`)
+        const VALUE = 250
 
+        if (box.top <= VALUE && box.bottom >= VALUE) {
+            //apply active state on current section and corresponding Nav link
+            setActive(section)
+            setActive(anchor)
+            
+        } else {
+            //Remove active state from other section and corresponding Nav link
+            unsetActive(section)
+            unsetActive(anchor)
+        }
+     }
+}
 
-// Scroll to anchor ID using scrollTO event
-
-
+function addSection(){
+    const section = document.createElement("section")
+}
 /**
  * End Main Functions
  * Begin Events
@@ -54,9 +113,10 @@
 */
 
 // Build menu 
-
-// Scroll to section on link click
+buildNav(navbarListElement)
 
 // Set sections as active
+document.addEventListener("scroll", activeSection)
 
+// adding a section
 
