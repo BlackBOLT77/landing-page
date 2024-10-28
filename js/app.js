@@ -34,7 +34,7 @@ const sectionList = document.getElementsByTagName("section")
  * 
 */
 
-// helper fucntion for clicking on anchor
+// helper function for clicking on anchor
 function clickHelper(e){
     e.preventDefault()
 
@@ -43,7 +43,7 @@ function clickHelper(e){
 
     // if it exists then scroll
     if(target){
-        target.scrollIntoView({behavior: "smooth"})
+        target.scrollIntoView({behavior: "smooth", block: "start"})
     }
 }
 

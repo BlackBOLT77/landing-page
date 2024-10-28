@@ -51,13 +51,19 @@ main {
 }
 
 .main-hero {
-    min-height: 40vh;
+    min-height: 50vh;
     padding-top: 3em;
+   
+}
+
+.main__hero h1{
+    padding-top: 2em;
 }
 
 section {
     position: relative;
     min-height: 80vh;
+    padding-top: 9em;
 }
 
 
@@ -67,7 +73,7 @@ section {
 .navbar__menu ul {
     padding-left: 0;
     margin: 0;
-    text-align: right;
+    text-align: left;
 }
 
 .navbar__menu li {
@@ -85,10 +91,32 @@ section {
 }
 
 .navbar__menu .menu__link:hover {
+    text-decoration: underline;
+}
+
+.navbar__menu a.active{
     background: #333;
     color: #fff;
-    transition: ease 0.3s all;
 }
+
+.navbar__menu li {
+    padding: 0.3em;
+}
+
+/* Responsive nav bar*/
+@media screen and (min-width: 500px){
+    .navbar__menu ul {
+        text-align: right;
+    }
+    .navbar__menu li {
+        padding: 1em;
+    }
+    .section{
+        padding-top: 1em;
+    }
+}
+
+
 
 /* Header Styles */
 .page__header {
